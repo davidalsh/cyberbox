@@ -3,6 +3,6 @@ from django.views import View
 from django.http import HttpResponse
 
 
-class MainView(View):
+class MainPageView(View):
     def get(self, request):
-        return HttpResponse('Ok')
+        return render(request, 'main/login.html')

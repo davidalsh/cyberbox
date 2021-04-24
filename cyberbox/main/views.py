@@ -29,7 +29,7 @@ class SignInView(View):
             if user:
                 login(request, user)
                 return redirect('home')
-        return render(request, 'main/sign-in.html', {'form': form})
+        return render(request, 'main/sign_in.html', {'form': form})
 
 
 class SignUpView(View):

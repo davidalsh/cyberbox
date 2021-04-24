@@ -3,16 +3,28 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Cyberbox</a>
+        <a class="navbar-brand js-scroll-trigger" href="{% url 'home' %}">Cyberbox</a>
         <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Portfolio</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Projects</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">News</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a></li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item mx-0 mt-1 mx-lg-1"><a class="btn btn-outline-primary" href="#"><i class="fas fa-user"></i></a></li>
+                    <li class="nav-item mx-0 mt-1 mx-lg-1"><a class="btn btn-outline-primary" href="#"><i class="fas fa-sign-out-alt"></i></a></li>
+                {% else %}
+                    <li class="nav-item mx-0 mt-1 mx-lg-1"><a class="btn btn-outline-primary" href="{% url 'sign-in' %}">Sign In</a></li>
+<!--                    <li class="nav-item mx-0 mt-1 mx-lg-1"><a class="btn btn-outline-primary" href="#">Sign Up</a></li>-->
+                {% endif %}
             </ul>
         </div>
     </div>
 </nav>
+
+<!--<button class="btn btn-primary" data-dismiss="modal">
+                                        <i class="fas fa-times fa-fw"></i>
+                                        Close
+                                    </button>-->

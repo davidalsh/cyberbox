@@ -1,0 +1,53 @@
+{% extends 'base_auth.html' %}
+{% load static %}
+
+
+{% block title %}Sign In{% endblock %}
+
+{% block content %}
+
+<section class="page-section" id="contact">
+    <div class="container">
+        <!-- Contact Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Welcome</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Contact Section Form-->
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
+                <form id="contactForm" name="sentMessage" novalidate="novalidate" method="post">
+                    {% csrf_token %}
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>Username</label>
+                            {{ form.username }}
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>Password</label>
+                            {{ form.password }}
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+
+                    <br/>
+                    {{ form.errors }}
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Sign In</button>
+                        <a class="ml-3" style="color: #293744; font-size: 1.1rem" href="{% url 'sign-up' %}">Sign Up</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

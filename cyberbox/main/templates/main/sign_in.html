@@ -25,20 +25,24 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>Username</label>
-                            {{ form.username }}
+                            <input class="form-control" id="username" type="text" name="username" placeholder="username" required="required" data-validation-required-message="Please enter your name." />
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>Password</label>
-                            {{ form.password }}
+                            <input class="form-control" id="password" type="password" name="password" placeholder="password" required="required" data-validation-required-message="Please enter your password." />
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
 
                     <br/>
-                    {{ form.errors }}
+                    {% for message in messages %}
+                        <div id="messages" class="alert alert-info" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
                     <div class="form-group">
                         <button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Sign In</button>
                         <a class="ml-3" style="color: #293744; font-size: 1.1rem" href="{% url 'sign-up' %}">Sign Up</a>

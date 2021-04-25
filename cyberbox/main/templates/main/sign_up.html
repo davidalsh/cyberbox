@@ -6,10 +6,9 @@
 
 {% block content %}
 
-<section class="page-section" id="contact">
+<section class="page-section" id="contact" style="font-size: 1em;">
     <div class="container">
         <!-- Contact Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Welcome</h2>
         <h3 class="page-section-heading text-center text-uppercase text-secondary mb-0">Create your account</h3>
         <!-- Icon Divider-->
         <div class="divider-custom">
@@ -25,15 +24,15 @@
                     {% csrf_token %}
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label>Email Address</label>
-                            {{% form.email %}}
+                            <label>Username</label>
+                            {{ form.username }}
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label>Username</label>
-                            {{ form.username }}
+                            <label>Email Address</label>
+                            {{ form.email }}
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
@@ -69,13 +68,14 @@
 {% block js %}
 <script>
     var form_fields = document.getElementsByTagName('input')
-    form_fields[1].placeholder='Email';
-    form_fields[2].placeholder='Username';
-    form_fields[2].placeholder='Password';
-    form_fields[2].placeholder='Password';
+    form_fields[1].placeholder='Username';
+    form_fields[2].placeholder='Email';
+    form_fields[3].placeholder='Password';
+    form_fields[4].placeholder='Confirm Password';
 
     for (var field in form_fields){
         form_fields[field].className += ' form-control'
     }
 </script>
 {% endblock %}
+

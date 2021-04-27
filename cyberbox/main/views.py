@@ -1,10 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse, Http404
 from django.views import View
-from django.http import HttpResponse
+
 from main.forms import CreateUserForm
+
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-# from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class SignUpView(View):
@@ -23,7 +26,6 @@ class SignUpView(View):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Account %s was created.' % form.cleaned_data.get('username'))
             return redirect('sign-in')
         context = {
             'form': form,
@@ -48,7 +50,7 @@ class SignInView(View):
             login(request, user)
             return redirect('home')
 
-        messages.info(request, 'Username or Password is incorrect')
+        messages.info(request, 'Username or Password is incorrect.')
 
         context = {}
         return render(request, 'main/sign_in.html', context)
@@ -57,6 +59,15 @@ class SignInView(View):
 def SignOutView(request):
     logout(request)
     return redirect('home')
+
+
+class ProfilePageView(LoginRequiredMixin, View):
+    login_url = '/sign-in/'
+    redirect_field_name = 'sign-in'
+
+    def get(self, request, username):
+        user = get_object_or_404(User, username=username)
+        return render(request, 'main/profile.html', {'profile_user': user})
 
 
 class MainPageView(View):

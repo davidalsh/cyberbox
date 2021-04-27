@@ -8,17 +8,10 @@
 
 <section class="page-section" id="contact" style="font-size: 1em;">
     <div class="container">
-        <!-- Contact Section Heading-->
-        <h3 class="page-section-heading text-center text-uppercase text-secondary mb-0">Create your account</h3>
-        <!-- Icon Divider-->
-        <div class="divider-custom">
-            <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-            <div class="divider-custom-line"></div>
-        </div>
-        <!-- Contact Section Form-->
+        <h3 style="font-size: 2em;" class="page-section-heading text-center text-uppercase text-secondary mb-0">Create
+            your account</h3>
         <div class="row">
-            <div class="col-lg-8 mx-auto">
+            <div class="col-lg-6 mx-auto">
                 <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
                 <form id="contactForm" name="sentMessage" novalidate="novalidate" method="post">
                     {% csrf_token %}
@@ -26,35 +19,54 @@
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>Username</label>
                             {{ form.username }}
-                            <p class="help-block text-danger"></p>
+                            {% if form.username.errors %}
+                                {% for error in form.username.errors %}
+                                    <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>Email Address</label>
                             {{ form.email }}
-                            <p class="help-block text-danger"></p>
+                            {% if form.email.errors %}
+                                {% for error in form.email.errors %}
+                                    <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>Password</label>
                             {{ form.password1 }}
-                            <p class="help-block text-danger"></p>
+                            {% if form.password1.errors %}
+                                {% for error in form.password1.errors %}
+                                    <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>Password</label>
                             {{ form.password2 }}
-                            <p class="help-block text-danger"></p>
+                            {% if form.password2.errors %}
+                                {% for error in form.password2.errors %}
+                                    <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
+                                    <br/>
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
                     <br/>
-                    {{ form.errors }}
                     <div class="form-group">
-                        <button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Sign Up</button>
-                        <a class="ml-3" style="color: #293744; font-size: 1.1rem" href="{% url 'sign-in' %}">Sign In</a>
+                        <button class="btn btn-primary btn-xl" id="sendMessageButton" style="font-size: 1.2em;"
+                                type="submit">Sign Up
+                        </button>
+                        <a class="ml-3" style="color: #293744; font-size: 1.1rem" href="{% url 'sign-in' %}">or Sign
+                            In</a>
                     </div>
 
                 </form>
@@ -76,6 +88,7 @@
     for (var field in form_fields){
         form_fields[field].className += ' form-control'
     }
+
 </script>
 {% endblock %}
 

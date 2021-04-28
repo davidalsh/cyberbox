@@ -10134,7 +10134,7 @@ h3 {
 
 @media (min-width: 992px) {
   .masthead {
-    padding-top: calc(6rem + 104px);
+    padding-top: 6rem;
     padding-bottom: 6rem;
   }
   .masthead .masthead-heading {
@@ -10244,4 +10244,88 @@ form .row:first-child .floating-label-form-group {
 
 .copyright {
   background-color: #1a252f;
+}
+
+
+.language-python {
+  color: #376AA4;
+  border-color: #376AA4;
+}
+
+.language-python:hover {
+  color: #fff;
+  border-color: #376AA4;
+  background: #376AA4;
+}
+
+
+.language-javascript {
+  color: #E6C418;
+  border-color: #E6C418;
+}
+
+.language-javascript:hover {
+  color: #fff;
+  border-color: #E6C418;
+  background: #E6C418;
+}
+
+
+.language-java {
+  color: #BD5444;
+  border-color: #BD5444;
+}
+
+.language-java:hover {
+  color: #fff;
+  border-color: #BD5444;
+  background: #BD5444;
+}
+
+
+.language-html {
+  color: #E96228;
+  border-color: #E96228;
+}
+
+.language-html:hover {
+  color: #fff;
+  border-color: #E96228;
+  background: #E96228;
+}
+
+
+.language-css {
+  color: #2DA5D7;
+  border-color: #2DA5D7;
+}
+
+.language-css:hover {
+  color: #fff;
+  border-color: #2DA5D7;
+  background: #2DA5D7;
+}
+
+
+.language-php {
+  color: #4D588E;
+  border-color: #4D588E;
+}
+
+.language-php:hover {
+  color: #fff;
+  border-color: #4D588E;
+  background: #4D588E;
+}
+
+
+.language-c-sharp {
+  color: #903BA7;
+  border-color: #903BA7;
+}
+
+.language-c-sharp:hover {
+  color: #fff;
+  border-color: #903BA7;
+  background: #903BA7;
 }

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{{ profile_user }}{% endblock %}
+{% block title %}{{ profile_user.username }}{% endblock %}
 
 {% block content %}
 <header class="masthead bg-primary text-white">
@@ -11,10 +11,10 @@
                 <!-- Masthead Avatar Image-->
                 <img class="masthead-avatar mb-5" src="{% static 'assets/img/avataaars.svg' %}" alt=""/>
                 <!-- Masthead Heading-->
-                <h2 class="masthead-heading text-uppercase mb-0">{{ profile_user }}</h2>
+                <h2 class="masthead-heading text-uppercase mb-0">{{ profile_user.username }}</h2>
                 <!-- Masthead Subheading-->
                 <p class="masthead-subheading font-weight-light mb-0">Python Developer</p>
-                <hr class="d-lg-none"/>
+                <hr style="background:#fff;" class="d-lg-none"/>
             </div>
             <div class="col-lg-8">
                 <!-- About Section Heading-->
@@ -23,18 +23,23 @@
                 <!-- About Section Content-->
                 <div class="row">
                     <div class="col-lg-4 ml-auto mb-2">
-                        <p class="lead">Languages: Python, JavaScript</p>
-                        <p class="lead">Languages: Python, JavaScript</p>
-                        <a class="btn btn-outline-light rounded" href="https://github.com/davidalsh"><i
-                                class="fab fa-github fa-lg"></i></a>
-                        <a class="btn btn-outline-light rounded mx-1" href="https://linkedin.com"><i
-                                class="fab fa-linkedin-in fa-lg"></i></a>
+                        <p class="lead text-uppercase">Languages:</p>
+                        <a class="btn btn-outline-light rounded mt-1 language-python">Python</a>
+                        <a class="btn btn-outline-light rounded mt-1 language-javascript">JavaScript</a>
+                        <a class="btn btn-outline-light rounded mt-1 language-java">Java</a>
+                        <a class="btn btn-outline-light rounded mt-1 language-html">HTML</a>
+                        <a class="btn btn-outline-light rounded mt-1 language-css">CSS</a>
+                        <a class="btn btn-outline-light rounded mt-1 language-php">PHP</a>
+                        <a class="btn btn-outline-light rounded mt-1 language-c-sharp">C#</a>
                     </div>
                     <div class="col-lg-4 mr-auto">
                         <p class="lead">You can create your own custom avatar for the
                             masthead, change the icon in the dividers, and add your email address to the contact form to
                             make it fully functional!</p>
-
+                        <a class="btn btn-outline-light rounded" href="https://github.com/davidalsh"><i
+                                class="fab fa-github fa-lg"></i></a>
+                        <a class="btn btn-outline-light rounded mx-1" href="https://linkedin.com"><i
+                                class="fab fa-linkedin-in fa-lg"></i></a>
                     </div>
                 </div>
             </div>

@@ -10329,3 +10329,14 @@ form .row:first-child .floating-label-form-group {
   border-color: #903BA7;
   background: #903BA7;
 }
+
+.footer-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: #A77E5E;
+  text-decoration: none;
+}
+

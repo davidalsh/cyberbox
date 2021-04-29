@@ -75,7 +75,6 @@ class ProfilePageView(LoginRequiredMixin, View):
             userprofile = UserProfile.objects.get(user_id=user.pk)
         except ObjectDoesNotExist:
             userprofile = None
-        print(userprofile)
         context = {
             'profile_user': user,
             'about_user': userprofile,

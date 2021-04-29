@@ -23,3 +23,4 @@ class UserProfileAdmin(admin.ModelAdmin):
     list_display_links = ("user",)
     list_filter = ("programming_languages", "working_place",)
     search_fields = ("title", "about", )
+    readonly_fields = ("avatar",)

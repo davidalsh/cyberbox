@@ -42,12 +42,13 @@ class UserProfile(models.Model):
                                       blank=True)
 
     avatar = models.ImageField(upload_to='profileavatar/%Y/%m/%d', null=True, blank=True)
-    about = models.TextField(blank=True)
+    about = models.CharField(max_length=300, blank=True)
     github = models.URLField(max_length=200, null=True, blank=True)
     linkedin = models.URLField(max_length=400, null=True, blank=True)
 
     def __str__(self):
         return f'{self.user} - {self.user.pk}'
+
 
 # Projects app
 # class Projects(models.Model):

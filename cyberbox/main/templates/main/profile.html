@@ -9,35 +9,48 @@
         <div class="row">
             <div class="col-lg-4 text-center">
                 <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-5" src="{% static 'assets/img/avataaars.svg' %}" alt=""/>
+                {% if about_user.avatar %}
+                    <img class="masthead-avatar mb-5 rounded" src="{{ about_user.avatar.url }}" alt=""/>
+                {% else %}
+                    <img class="masthead-avatar mb-5" src="{% static 'assets/img/avataaars.svg' %}" alt=""/>
+                {% endif %}
                 <!-- Masthead Heading-->
                 <h2 class="masthead-heading text-uppercase mb-0">{{ profile_user.username }}</h2>
                 <!-- Masthead Subheading-->
-                <p class="masthead-subheading font-weight-light mb-0">{{ about_user.about }}</p>
+                <p class="masthead-subheading font-weight-light mb-0">{{ about_user.working_place }}</p>
                 <hr style="background:#fff;" class="d-lg-none"/>
             </div>
             <div class="col-lg-8">
-                <!-- About Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-white mb-4">About Me</h2>
 
                 <!-- About Section Content-->
                 <div class="row">
-                    <div class="col-lg-4 ml-auto mb-2">
-                        <p class="lead text-uppercase">Languages:</p>
-                        <a class="btn btn-outline-light rounded mt-1 language-python">Python</a>
-                        <a class="btn btn-outline-light rounded mt-1 language-javascript">JavaScript</a>
-                        <a class="btn btn-outline-light rounded mt-1 language-java">Java</a>
-                        <a class="btn btn-outline-light rounded mt-1 language-html">HTML</a>
-                        <a class="btn btn-outline-light rounded mt-1 language-css">CSS</a>
-                        <a class="btn btn-outline-light rounded mt-1 language-php">PHP</a>
-                        <a class="btn btn-outline-light rounded mt-1 language-c-sharp">C#</a>
+                    <div class="col-lg-4 ml-auto mb-3 text-center">
+                        <h3 class="lead text-uppercase font-weight-bold">Skills:</h3>
+                        {% if about_user.programming_languages.all %}
+                            {% for language in about_user.programming_languages.all %}
+                                {% if language != 'C#' %}
+                                    <a class="btn btn-outline-light rounded mt-1 language-{{ language|lower }}">{{ language }}</a>
+                                {% else %}
+                                    <a class="btn btn-outline-light rounded mt-1 language-c-sharp">C#</a>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <p class="lead" style="color: #4A4A4A;">Nothing here yet.</p>
+                        {% endif %}
                     </div>
-                    <div class="col-lg-4 mr-auto">
-                        <p class="lead">{{ profile_user.userprofile_set.about }}</p>
-                        <a class="btn btn-outline-light rounded" href="https://github.com/davidalsh"><i
+                    <div class="col-lg-4 mr-auto text-center">
+                        {% if about_user.about or about_user.github or about_user.linkedin %}
+                            <h3 class="lead text-uppercase font-weight-bold">About Me:</h3>
+                        {% endif %}
+                        <p class="lead">{{ about_user.about }}</p>
+                        {% if about_user.github %}
+                           <a class="btn btn-outline-light rounded" href="{{ about_user.github }}"><i
                                 class="fab fa-github fa-lg"></i></a>
-                        <a class="btn btn-outline-light rounded mx-1" href="https://linkedin.com"><i
+                        {% endif %}
+                        {% if about_user.linkedin %}
+                        <a class="btn btn-outline-light rounded mx-1" href="{{ about_user.linkedin }}"><i
                                 class="fab fa-linkedin-in fa-lg"></i></a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

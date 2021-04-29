@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, Http404
 from django.views import View
+from django.core.exceptions import ObjectDoesNotExist
+
 
 from main.forms import CreateUserForm
 
@@ -8,6 +10,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+from main.models import UserProfile
 
 
 class SignUpView(View):
@@ -67,7 +71,16 @@ class ProfilePageView(LoginRequiredMixin, View):
 
     def get(self, request, username):
         user = get_object_or_404(User, username=username)
-        return render(request, 'main/profile.html', {'profile_user': user})
+        try:
+            userprofile = UserProfile.objects.get(user_id=user.pk)
+        except ObjectDoesNotExist:
+            userprofile = None
+        print(userprofile)
+        context = {
+            'profile_user': user,
+            'about_user': userprofile,
+        }
+        return render(request, 'main/profile.html', context)
 
 
 class MainPageView(View):

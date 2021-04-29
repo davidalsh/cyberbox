@@ -13,7 +13,7 @@
                 <!-- Masthead Heading-->
                 <h2 class="masthead-heading text-uppercase mb-0">{{ profile_user.username }}</h2>
                 <!-- Masthead Subheading-->
-                <p class="masthead-subheading font-weight-light mb-0">Python Developer</p>
+                <p class="masthead-subheading font-weight-light mb-0">{{ about_user.about }}</p>
                 <hr style="background:#fff;" class="d-lg-none"/>
             </div>
             <div class="col-lg-8">
@@ -33,9 +33,7 @@
                         <a class="btn btn-outline-light rounded mt-1 language-c-sharp">C#</a>
                     </div>
                     <div class="col-lg-4 mr-auto">
-                        <p class="lead">You can create your own custom avatar for the
-                            masthead, change the icon in the dividers, and add your email address to the contact form to
-                            make it fully functional!</p>
+                        <p class="lead">{{ profile_user.userprofile_set.about }}</p>
                         <a class="btn btn-outline-light rounded" href="https://github.com/davidalsh"><i
                                 class="fab fa-github fa-lg"></i></a>
                         <a class="btn btn-outline-light rounded mx-1" href="https://linkedin.com"><i

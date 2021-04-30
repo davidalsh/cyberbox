@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Profile Settings{% endblock %}
+
+{% block content %}
+
+<section class="page-section" id="contact" style="font-size: 1em;">
+    <div class="container">
+        <h3 style="font-size: 2em;" class="page-section-heading text-center text-uppercase text-secondary mb-0">Create
+            your account</h3>
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>Working_place</label>
+                            {{ form.working_place }}
+                            {% if form.working_place.errors %}
+                            {% for error in form.working_place.errors %}
+                            <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>Avatar</label>
+                            {{ form.email }}
+                            {% if form.avatar.errors %}
+                            {% for error in form.avatar.errors %}
+                            <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>About</label>
+                            {{ form.about }}
+                            {% if form.about.errors %}
+                            {% for error in form.about.errors %}
+                            <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>Programming Languages</label>
+                            {{ form.programming_languages }}
+                            {% if form.programming_languages.errors %}
+                            {% for error in form.programming_languages.errors %}
+                            <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
+                            <br/>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>GitHub</label>
+                            {{ form.github }}
+                            {% if form.github.errors %}
+                            {% for error in form.github.errors %}
+                            <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
+                            <br/>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>LinkedIn</label>
+                            {{ form.linkedin }}
+                            {% if form.linkedin.errors %}
+                            {% for error in form.linkedin.errors %}
+                            <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
+                            <br/>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-xl" style="font-size: 1.2em;"
+                                type="submit">Update profile
+                        </button>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+

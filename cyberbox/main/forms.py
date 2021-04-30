@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 from django.core.files.images import get_image_dimensions
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -17,39 +18,36 @@ class CreateUserForm(UserCreationForm):
         ]
 
 
-# class UserProfileForm(forms.ModelForm):
-#     class Meta:
-#         model = UserProfile
-#
-#     def clean_avatar(self):
-#         avatar = self.cleaned_data['avatar']
-#
-#         try:
-#             w, h = get_image_dimensions(avatar)
-#
-#             # validate dimensions
-#             max_width = max_height = 100
-#             if w > max_width or h > max_height:
-#                 raise forms.ValidationError(
-#                     u'Please use an image that is '
-#                     '%s x %s pixels or smaller.' % (max_width, max_height))
-#
-#             # validate content type
-#             main, sub = avatar.content_type.split('/')
-#             if not (main == 'image' and sub in ['jpeg', 'pjpeg', 'gif', 'png']):
-#                 raise forms.ValidationError(u'Please use a JPEG, '
-#                                             'GIF or PNG image.')
-#
-#             # validate file size
-#             if len(avatar) > (20 * 1024):
-#                 raise forms.ValidationError(
-#                     u'Avatar file size may not exceed 20k.')
-#
-#         except AttributeError:
-#             """
-#             Handles case when we are updating the user profile
-#             and do not supply a new avatar
-#             """
-#             pass
-#
-#         return avatar
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = [
+            'working_place',
+            'avatar',
+            'about',
+            'programming_languages',
+            'github',
+            'linkedin',
+        ]
+
+    # def clean(self):
+    #     cleaned_data = super().clean()
+    #     img = cleaned_data.get("avatar")
+    #     print(img)
+    #     print(self.img)
+    #     prog_languages = cleaned_data.get("programming_languages")
+    #     github = cleaned_data.get("github")
+    #     linkedin = cleaned_data.get("linkedin")
+    #
+    #     # from PIL import Image, ImageOps
+    #     # mask = Image.open('static/assets/mask.png').convert('L')
+    #     # im = Image.open(self.img.path)
+    #     #
+    #     # output = ImageOps.fit(im, mask.size, centering=(0.5, 0.5))
+    #     # output.putalpha(mask)
+    #     # output.save(self.img.path)
+    #     print(prog_languages)
+    #     # if len(prog_languages) > 7:
+    #     #     raise ValidationError("You can choose maximum 7 skills.")
+    #     print(github)
+    #     print(linkedin)

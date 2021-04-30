@@ -3,8 +3,7 @@ from django.http import HttpResponse, Http404
 from django.views import View
 from django.core.exceptions import ObjectDoesNotExist
 
-
-from main.forms import CreateUserForm
+from main.forms import CreateUserForm, UserProfileForm
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -70,16 +69,37 @@ class ProfilePageView(LoginRequiredMixin, View):
     redirect_field_name = 'sign-in'
 
     def get(self, request, username):
-        user = get_object_or_404(User, username=username)
+        if request.user.username == username:
+            user = request.user
+        else:
+            user = get_object_or_404(User, username=username)
+
         try:
-            userprofile = UserProfile.objects.get(user_id=user.pk)
+            about_user = UserProfile.objects.get(user_id=user.pk)
         except ObjectDoesNotExist:
-            userprofile = None
+            about_user = None
+
         context = {
             'profile_user': user,
-            'about_user': userprofile,
+            'about_user': about_user,
         }
         return render(request, 'main/profile.html', context)
+
+
+class ProfilePageSettingsView(LoginRequiredMixin, View):
+    login_url = '/sign-in/'
+    redirect_field_name = 'sign-in'
+
+    def get(self, request):
+        form = UserProfileForm()
+
+        context = {
+            'form': form,
+        }
+        return render(request, 'main/settings.html', context)
+
+    def post(self, request):
+        pass
 
 
 class MainPageView(View):

@@ -2,20 +2,25 @@
 {% load static %}
 
 {% block title %}{{ profile_user.username }}{% endblock %}
-
+<!---->
 {% block content %}
 <header class="masthead bg-primary text-white">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 text-center">
                 <!-- Masthead Avatar Image-->
-                {% if about_user.avatar %}
+                {% if about_user.avatar.url %}
                     <img class="masthead-avatar mb-5 rounded" src="{{ about_user.avatar.url }}" alt=""/>
                 {% else %}
                     <img class="masthead-avatar mb-5" src="{% static 'assets/img/avataaars.svg' %}" alt=""/>
                 {% endif %}
                 <!-- Masthead Heading-->
-                <h2 class="masthead-heading text-uppercase mb-0">{{ profile_user.username }}</h2>
+                {% if profile_user.username == user.username %}
+
+                    <h2 class="masthead-heading text-uppercase mb-0">{{ profile_user.username }}<a class="btn btn-primary mb-2 mx-2" href="{% url 'profile-settings' %}"><i class="fas fa-cog fa-lg" style="margin-top: 2px;"></i></a></h2>
+                {% else %}
+                    <h2 class="masthead-heading text-uppercase mb-0">{{ profile_user.username }}</h2>
+                {% endif %}
                 <!-- Masthead Subheading-->
                 <p class="masthead-subheading font-weight-light mb-0">{{ about_user.working_place }}</p>
                 <hr style="background:#fff;" class="d-lg-none"/>

@@ -96,10 +96,20 @@ class ProfilePageSettingsView(LoginRequiredMixin, View):
         context = {
             'form': form,
         }
-        return render(request, 'main/settings.html', context)
+        return render(request, 'main/test_settings.html', context)
 
     def post(self, request):
-        pass
+        form = UserProfileForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.user = request.user
+            obj.save()
+            return redirect('profile', username=request.user.username)
+        context = {
+            'form': form,
+        }
+        return render(request, 'main/test_settings.html', context)
 
 
 class MainPageView(View):

@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-lg-4 text-center">
                 <!-- Masthead Avatar Image-->
-                {% if about_user.avatar.url %}
+                {% if about_user.avatar %}
                     <img class="masthead-avatar mb-5 rounded" src="{{ about_user.avatar.url }}" alt=""/>
                 {% else %}
                     <img class="masthead-avatar mb-5" src="{% static 'assets/img/avataaars.svg' %}" alt=""/>
@@ -21,8 +21,9 @@
                 {% else %}
                     <h2 class="masthead-heading text-uppercase mb-0">{{ profile_user.username }}</h2>
                 {% endif %}
-                <!-- Masthead Subheading-->
+                {% if about_user.working_place %}
                 <p class="masthead-subheading font-weight-light mb-0">{{ about_user.working_place }}</p>
+                {% endif %}
                 <hr style="background:#fff;" class="d-lg-none"/>
             </div>
             <div class="col-lg-8">

@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 
 from main.models import UserProfile
 
+import re
+
 
 class CreateUserForm(UserCreationForm):
     class Meta:
@@ -30,24 +32,23 @@ class UserProfileForm(forms.ModelForm):
             'linkedin',
         ]
 
-    # def clean(self):
-    #     cleaned_data = super().clean()
-    #     img = cleaned_data.get("avatar")
-    #     print(img)
-    #     print(self.img)
-    #     prog_languages = cleaned_data.get("programming_languages")
-    #     github = cleaned_data.get("github")
-    #     linkedin = cleaned_data.get("linkedin")
-    #
-    #     # from PIL import Image, ImageOps
-    #     # mask = Image.open('static/assets/mask.png').convert('L')
-    #     # im = Image.open(self.img.path)
-    #     #
-    #     # output = ImageOps.fit(im, mask.size, centering=(0.5, 0.5))
-    #     # output.putalpha(mask)
-    #     # output.save(self.img.path)
-    #     print(prog_languages)
-    #     # if len(prog_languages) > 7:
-    #     #     raise ValidationError("You can choose maximum 7 skills.")
-    #     print(github)
-    #     print(linkedin)
+    def clean(self):
+        cleaned_data = super().clean()
+
+        prog_languages = cleaned_data.get("programming_languages")
+        github = cleaned_data.get("github")
+        linkedin = cleaned_data.get("linkedin")
+
+        if prog_languages and len(prog_languages) > 7:
+            self.add_error('programming_languages', 'You can choose maximum 7 skills.')
+        if github is not None:
+            links = [r'https://github.com/', r'https://www.github.com/', r'http://github.com/', r'http://www.github.com/']
+            if not len(list(filter(None, map(lambda link: re.search(link, github), links)))):
+                self.add_error('github', 'GitHub link is invalid.')
+
+        if linkedin is not None:
+            links = [r'https://linkedin.com/', r'https://www.linkedin.com/', r'http://linkedin.com/', r'http://www.linkedin.com/']
+            if not len(list(filter(None, map(lambda link: re.search(link, linkedin), links)))):
+                self.add_error('linkedin', 'LinkedIn link is invalid.')
+
+        return cleaned_data

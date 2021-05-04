@@ -86,7 +86,7 @@ class ProfilePageView(LoginRequiredMixin, View):
         return render(request, 'main/profile.html', context)
 
 
-class ProfilePageSettingsView(LoginRequiredMixin, View):
+class ProfilePageSettingsView(LoginRequiredMixin, View):  # Settings View
     login_url = '/sign-in/'
     redirect_field_name = 'sign-in'
 
@@ -96,7 +96,7 @@ class ProfilePageSettingsView(LoginRequiredMixin, View):
         context = {
             'form': form,
         }
-        return render(request, 'main/test_settings.html', context)
+        return render(request, 'main/settings.html', context)
 
     def post(self, request):
         form = UserProfileForm(request.POST, request.FILES)
@@ -105,11 +105,34 @@ class ProfilePageSettingsView(LoginRequiredMixin, View):
             obj = form.save(commit=False)
             obj.user = request.user
             obj.save()
+            form.save_m2m()
             return redirect('profile', username=request.user.username)
+
         context = {
             'form': form,
         }
-        return render(request, 'main/test_settings.html', context)
+        return render(request, 'main/settings.html', context)
+
+
+class ProfileSettingsDeletePageView(LoginRequiredMixin, View):  # Delete View
+    login_url = '/sign-in/'
+    redirect_field_name = 'sign-in'
+
+    def get(self, request):
+        return render(request, 'main/delete_profile.html', {})
+
+    def post(self, request):
+        username = request.POST.get('username')
+
+        if username == request.user.username:
+            User.objects.get(id=request.user.id).delete()
+            logout(request)
+            return redirect('sign-up')
+
+        messages.info(request, 'Username is incorrect.')
+
+        context = {}
+        return render(request, 'main/delete_profile.html', context)
 
 
 class MainPageView(View):

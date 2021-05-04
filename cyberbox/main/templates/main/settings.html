@@ -5,14 +5,13 @@
 
 {% block content %}
 
-<section class="page-section" id="contact" style="font-size: 1em;">
+<section class="page-section" style="font-size: 1em;">
     <div class="container">
-        <h3 style="font-size: 2em;" class="page-section-heading text-center text-uppercase text-secondary mb-0">Create
+        <h3 style="font-size: 2em;" class="page-section-heading text-center text-uppercase text-secondary mb-0">Update
             your account</h3>
         <div class="row">
             <div class="col-lg-6 mx-auto">
-                <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
-                <form method="post">
+                <form method="post" action="" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
@@ -27,8 +26,8 @@
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label>Avatar</label>
-                            {{ form.email }}
+                            <label for="id_avatar"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Choose a file&hellip;</span></label>
+                            {{ form.avatar }}
                             {% if form.avatar.errors %}
                             {% for error in form.avatar.errors %}
                             <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
@@ -49,7 +48,7 @@
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label>Programming Languages</label>
+                            <label>Skills</label>
                             {{ form.programming_languages }}
                             {% if form.programming_languages.errors %}
                             {% for error in form.programming_languages.errors %}
@@ -88,7 +87,9 @@
                         <button class="btn btn-primary btn-xl" style="font-size: 1.2em;"
                                 type="submit">Update profile
                         </button>
-
+                        <a class="btn btn-danger btn-xl mx-2" href="{% url 'settings-delete-profile' %}" style="font-size: 1.2em;"
+                                type="submit">Delete account
+                        </a>
                     </div>
 
                 </form>
@@ -100,20 +101,18 @@
 {% endblock %}
 
 
-<!--{% block js %}-->
-<!--<script>-->
-<!--    var form_fields = document.getElementsByTagName('input')-->
-<!--    form_fields[1].placeholder='Working Place';-->
-<!--    form_fields[2].placeholder='Avatar';-->
-<!--    form_fields[3].placeholder='About';-->
-<!--    form_fields[4].placeholder='Programming Languages';-->
-<!--    form_fields[5].placeholder='github';-->
-<!--    form_fields[6].placeholder='linkedin';-->
+{% block js %}
+<script>
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[1].className += ' inputfile inputfile-1'
+    form_fields[2].placeholder='About';
+    form_fields[3].placeholder='GitHub';
+    form_fields[4].placeholder='LinkedIn';
 
-<!--    for (var field in form_fields){-->
-<!--        form_fields[field].className += ' form-control'-->
-<!--    }-->
+    for (var field in form_fields){
+        form_fields[field].className += ' form-control'
+    }
 
-<!--</script>-->
-<!--{% endblock %}-->
+</script>
+{% endblock %}
 

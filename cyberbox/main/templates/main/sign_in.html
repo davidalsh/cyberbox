@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<section class="page-section" id="contact">
+<section class="page-section">
     <div class="container">
        <h3 style="font-size: 2em;" class="page-section-heading text-center text-uppercase text-secondary mb-0">Welcome</h3>
             <div class="card-body text-secondary">
@@ -19,7 +19,7 @@
                             <div class="control-group">
                                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
                                     <label>Username</label>
-                                    <input class="form-control" id="username" type="text" name="username"
+                                    <input class="" id="username" type="text" name="username"
                                            placeholder="username" required="required"
                                            data-validation-required-message="Please enter your name."/>
                                 </div>
@@ -27,7 +27,7 @@
                             <div class="control-group">
                                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
                                     <label>Password</label>
-                                    <input class="form-control" id="password" type="password" name="password"
+                                    <input class="" id="password" type="password" name="password"
                                            placeholder="password" required="required"
                                            data-validation-required-message="Please enter your password."/>
                                 </div>
@@ -41,7 +41,7 @@
                             {% endif %}
 
                             <div class="form-group mt-2">
-                                <button class="btn btn-primary btn-xl" id="sendMessageButton" style="font-size: 1.2em;"
+                                <button class="btn btn-primary btn-xl" style="font-size: 1.2em;"
                                         type="submit">Sign In
                                 </button>
                                 <a class="ml-3" style="color: #293744; font-size: 1.1rem" href="{% url 'sign-up' %}">or

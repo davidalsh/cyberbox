@@ -6,14 +6,14 @@
 
 {% block content %}
 
-<section class="page-section" id="contact" style="font-size: 1em;">
+<section class="page-section" style="font-size: 1em;">
     <div class="container">
         <h3 style="font-size: 2em;" class="page-section-heading text-center text-uppercase text-secondary mb-0">Create
             your account</h3>
         <div class="row">
             <div class="col-lg-6 mx-auto">
                 <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
-                <form id="contactForm" name="sentMessage" novalidate="novalidate" method="post">
+                <form novalidate="novalidate" method="post">
                     {% csrf_token %}
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">

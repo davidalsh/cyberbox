@@ -7,13 +7,17 @@
 <header class="masthead bg-primary text-white">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 text-center">
+            <div class="col-lg-4 flex-column text-center">
                 <!-- Masthead Avatar Image-->
+
+
                 {% if about_user.avatar %}
-                    <img class="masthead-avatar mb-5 rounded" src="{{ about_user.avatar.url }}" alt=""/>
+                    <div class="masthead-avatar mb-4" id="profile_avatar" style="background-image: url({{ about_user.avatar.url }})"></div>
                 {% else %}
-                    <img class="masthead-avatar mb-5" src="{% static 'assets/img/avataaars.svg' %}" alt=""/>
+                    <img class="masthead-avatar mb-4" src="{% static 'assets/img/avataaars.svg' %}" alt=""/>
                 {% endif %}
+
+
                 <!-- Masthead Heading-->
                 {% if profile_user.username == user.username %}
 
@@ -32,16 +36,18 @@
                 <div class="row">
                     <div class="col-lg-4 ml-auto mb-3 text-center">
                         <h3 class="lead text-uppercase font-weight-bold">Skills:</h3>
-                        {% if about_user.programming_languages.all %}
-                            {% for language in about_user.programming_languages.all %}
-                                {% if language != 'C#' %}
-                                    <a class="btn btn-outline-light rounded mt-1 language-{{ language|lower }}">{{ language }}</a>
-                                {% else %}
-                                    <a class="btn btn-outline-light rounded mt-1 language-c-sharp">C#</a>
-                                {% endif %}
-                            {% endfor %}
-                        {% else %}
-                            <p class="lead" style="color: #4A4A4A;">Nothing here yet.</p>
+                        {% if about_user %}
+                            {% if about_user.programming_languages.all %}
+                                {% for language in about_user.programming_languages.all %}
+                                    {% if language.title != 'C#' %}
+                                        <a class="btn btn-outline-light rounded mt-1 language-{{ language|lower }}">{{ language }}</a>
+                                    {% else %}
+                                        <a class="btn btn-outline-light rounded mt-1 language-c-sharp">C#</a>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <p class="lead" style="color: #4A4A4A;">Nothing here yet.</p>
+                            {% endif %}
                         {% endif %}
                     </div>
                     <div class="col-lg-4 mr-auto text-center">

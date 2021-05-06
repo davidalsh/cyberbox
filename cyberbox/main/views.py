@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from main.models import UserProfile
+from projects.models import Projects
 
 
 class SignUpView(View):
@@ -79,9 +80,15 @@ class ProfilePageView(LoginRequiredMixin, View):
         except ObjectDoesNotExist:
             about_user = None
 
+        try:
+            user_projects = Projects.objects.filter(users=user)
+        except ObjectDoesNotExist:
+            user_projects = None
+
         context = {
             'profile_user': user,
             'about_user': about_user,
+            'object_list': user_projects,
         }
         return render(request, 'main/profile.html', context)
 

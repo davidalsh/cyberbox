@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Projects{% endblock %}
+
+
+{% block content %}
+
+
+<section class="page-section portfolio">
+    <div class="container">
+        <!-- Portfolio Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-5">Projects</h2>
+        <!-- Portfolio Grid Items-->
+
+        <div class="row justify-content-center">
+            {% for project in object_list %}
+            <div class="col-md-6 col-lg-3 mb-5 mb-md-0">
+                <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal{{ project.pk }}">
+                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                        <div class="portfolio-item-caption-content text-center text-white"><i
+                                class="fas fa-box-open fa-3x"></i></div>
+                    </div>
+                    <img class="img-fluid" src="{% static 'assets/img/portfolio/safe.png' %}" alt=""/>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% for project in object_list %}
+<div class="portfolio-modal modal fade" id="portfolioModal{{ project.pk }}" tabindex="-1" role="dialog"
+     aria-labelledby="portfolioModal{{ project.pk }}Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true"><i class="fas fa-times"></i></span>
+            </button>
+            <div class="modal-body text-center">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <!-- Portfolio Modal - Title-->
+                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-2"
+                                id="portfolioModal{{ project.pk }}Label">{{ project.title }}</h2>
+                            <p style="color: #293744;">ID: {{ project.pk }}</p>
+
+
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <h4 class="text-uppercase">We are looking for:</h4>
+                            <p>{% if project.searching_for_working_place.all|length == 1 %}
+                                {{ project.searching_for_working_place.all.0 }}
+                                {% else %}
+                                {% for work in project.searching_for_working_place.all %}
+                                {% if work == project.searching_for_working_place.all.last %}
+                                {{ work.title }}
+                                {% else %}
+                                {{ work.title }},
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %}</p>
+                            <!-- Portfolio Modal - Image-->
+                            <h4 class="text-uppercase">What are we using:</h4>
+                            {% for skill in project.programming_languages_are_using.all %}
+                            {% if skill.title != 'C#' %}
+                            <a class="btn btn-outline-light rounded mt-1 language-{{ skill|lower }}">{{ skill }}</a>
+                            {% else %}
+                            <a class="btn btn-outline-light rounded mt-1 language-c-sharp">C#</a>
+                            {% endif %}
+                            {% endfor %}
+                            <!--                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/safe.png" alt=""/>-->
+                            <!-- Portfolio Modal - Text-->
+                            <p class="mb-4 mt-4">{{ project.description }}</p>
+
+                            <p>Max members: {{ project.max_members }}</p>
+                            <p class="mb-1">Owner: <a href="{% url 'profile' username=project.project_owner %}">{{ project.project_owner }}</a></p>
+                            {% if project.users.all|length == 1 %}
+                            <p>Current team: <a href="{% url 'profile' username=project.project_owner  %}">{{ project.project_owner }}</a></p>
+                            {% else %}
+                            <p>Current team:
+                                {% for t_user in project.users.all %}
+                                    {% if t_user == project.users.all.last %}
+                                        <a href="{% url 'profile' username=t_user  %}">{{ t_user }}</a>
+                                    {% else %}
+                                        <a href="{% url 'profile' username=t_user  %}">{{ t_user }}</a>,
+                                    {% endif %}
+                                {% endfor %}</p>
+                            {% endif %}
+
+                            <p><strong>{{ project.created_at|date:"SHORT_DATE_FORMAT" }} {{ project.created_at|time:"H:i" }}</strong>
+
+                                {% if project.open %}
+                                (<strong class="text-uppercase" style="color: #00D500;">Open</strong>)
+                                {% else %}
+                                (<strong class="text-uppercase" style="color: #D10A0A;">Closed</strong>)
+                                {% endif %}</p>
+                            <button class="btn btn-primary mt-2" data-dismiss="modal">
+                                <i class="fas fa-times fa-fw"></i>
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

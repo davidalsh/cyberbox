@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 from django_resized import ResizedImageField
 
+
 class WorkingPlace(models.Model):
     title = models.CharField(max_length=255)
 
@@ -37,8 +38,6 @@ class UserProfile(models.Model):
 
     programming_languages = models.ManyToManyField('ProgrammingLanguages', related_name='programming_languages',
                                                    blank=True)
-    # projects = models.ManyToManyField('Projects')
-    # owner_projects = models.ForeignKey('Projects', on_delete=models.CASCADE, null=True, blank=True)
     working_place = models.ForeignKey('WorkingPlace', related_name='work', on_delete=models.CASCADE,  null=True,
                                       blank=True)
 
@@ -52,21 +51,3 @@ class UserProfile(models.Model):
     def __str__(self):
         return f'{self.user} - {self.user.pk}'
 
-
-# Projects app
-# class Projects(models.Model):
-#     title = models.CharField(max_length=255)
-#     description = models.TextField()
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     programming_languages_are_using = models.ManyToManyField(ProgrammingLanguages)
-#     max_members = models.PositiveIntegerField()
-#     full = models.BooleanField(default=False)
-#     searching_for_working_place = models.ManyToManyField(WorkingPlace)
-#
-#     def __str__(self):
-#         return self.title
-#
-#     class Meta:
-#         verbose_name = "Project"
-#         verbose_name_plural = "Projects"
-#         ordering = ['-created_at']

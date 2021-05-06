@@ -10,7 +10,7 @@ class Projects(models.Model):
     programming_languages_are_using = models.ManyToManyField(ProgrammingLanguages)
     searching_for_working_place = models.ManyToManyField(WorkingPlace)
 
-    users = models.ManyToManyField(User, null=True)
+    users = models.ManyToManyField(User)
     project_owner = models.ForeignKey(User, related_name='owner_p', on_delete=models.CASCADE, null=True,
                                       blank=True)
     open = models.BooleanField(default=False)

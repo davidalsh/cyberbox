@@ -1,5 +1,5 @@
 from django import forms
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.core.files.images import get_image_dimensions
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -18,6 +18,20 @@ class CreateUserForm(UserCreationForm):
             'password1',
             'password2',
         ]
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        username = cleaned_data.get("username")
+
+        try:
+            User.objects.get(username=username.lower())
+        except ObjectDoesNotExist:
+            pass
+        else:
+            self.add_error("username", "This username exists. Please, choose another one")
+
+        return cleaned_data
 
 
 class UserProfileForm(forms.ModelForm):

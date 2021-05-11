@@ -2,24 +2,24 @@
 {% load widget_tweaks %}
 {% load static %}
 
-{% block title %}Profile Settings{% endblock %}
+{% block title %}{% endblock %}
+
 
 {% block content %}
 
 <section class="page-section" style="font-size: 1em;">
     <div class="container">
-        <h3 style="font-size: 2em;" class="page-section-heading text-center text-uppercase text-secondary mb-0">Update
-            your account</h3>
+        <h3 style="font-size: 2em;" class="page-section-heading text-center text-uppercase text-secondary mb-0">Create Your Project</h3>
         <div class="row">
             <div class="col-lg-6 mx-auto">
                 <form method="post" action="" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label for="{{ form.working_place.id_for_label }}">Working place</label>
-                            {{ form.working_place|add_class:"form-control"}}
-                            {% if form.working_place.errors %}
-                            {% for error in form.working_place.errors %}
+                            <label>Working place</label>
+                            {{ form.title|add_class:"form-control" }}
+                            {% if form.title.errors %}
+                            {% for error in form.title.errors %}
                             <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
                             {% endfor %}
                             {% endif %}
@@ -27,21 +27,10 @@
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label>Choose a file.</label>
-                            {{ form.avatar|add_class:"form-control" }}
-                            {% if form.avatar.errors %}
-                            {% for error in form.avatar.errors %}
-                            <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
-                            {% endfor %}
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label>About</label>
-                            {{ form.about|add_class:"form-control" }}
-                            {% if form.about.errors %}
-                            {% for error in form.about.errors %}
+                            <label>Description</label>
+                            {{ form.description|add_class:"form-control" }}
+                            {% if form.description.errors %}
+                            {% for error in form.description.errors %}
                             <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
                             {% endfor %}
                             {% endif %}
@@ -50,9 +39,22 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>Skills</label>
-                            {{ form.programming_languages|add_class:"form-control" }}
-                            {% if form.programming_languages.errors %}
-                            {% for error in form.programming_languages.errors %}
+                            <h4 style="color: #6C757D;">Skills are using on project:</h4>
+                            {{ form.programming_languages_are_using|add_class:"form-control" }}
+                            {% if form.programming_languages_are_using.errors %}
+                            {% for error in form.programming_languages_are_using.errors %}
+                            <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>Working Place</label>
+                            <h4 style="color: #6C757D;">Who do you need:</h4>
+                            {{ form.searching_for_working_place|add_class:"form-control" }}
+                            {% if form.searching_for_working_place.errors %}
+                            {% for error in form.searching_for_working_place.errors %}
                             <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
                             <br/>
                             {% endfor %}
@@ -61,10 +63,10 @@
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label>GitHub</label>
-                            {{ form.github|add_class:"form-control" }}
-                            {% if form.github.errors %}
-                            {% for error in form.github.errors %}
+                            <label>Open</label>
+                            <h4 style="color: #6C757D;">Open</h4>{{ form.open }}
+                            {% if form.open.errors %}
+                            {% for error in form.open.errors %}
                             <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
                             <br/>
                             {% endfor %}
@@ -73,10 +75,10 @@
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label>LinkedIn</label>
-                            {{ form.linkedin|add_class:"form-control" }}
-                            {% if form.linkedin.errors %}
-                            {% for error in form.linkedin.errors %}
+                            <label>Members</label>
+                            {{ form.max_members|add_class:"form-control" }}
+                            {% if form.max_members.errors %}
+                            {% for error in form.max_members.errors %}
                             <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
                             <br/>
                             {% endfor %}
@@ -86,11 +88,8 @@
                     <br/>
                     <div class="form-group">
                         <button class="btn btn-primary btn-xl" style="font-size: 1.2em;"
-                                type="submit">Update profile
+                                type="submit">Create Project
                         </button>
-                        <a class="btn btn-danger btn-xl mx-2" href="{% url 'settings-delete-profile' %}" style="font-size: 1.2em;"
-                                type="submit">Delete account
-                        </a>
                     </div>
 
                 </form>
@@ -102,13 +101,14 @@
 {% endblock %}
 
 
+
 {% block js %}
-<script>
-    var form_fields = document.getElementsByTagName('input')
-    form_fields[2].placeholder='About';
-    form_fields[3].placeholder='GitHub';
-    form_fields[4].placeholder='LinkedIn';
+    <script>
+        var form_input = document.getElementsByTagName('input');
+        var form_textarea = document.getElementById('id_description');
+        document.getElementById("id_max_members").placeholder = "Members";
+        form_input[1].placeholder='Title';
+        form_textarea.placeholder='Description';
 
-</script>
+    </script>
 {% endblock %}
-

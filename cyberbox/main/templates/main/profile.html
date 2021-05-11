@@ -77,14 +77,14 @@
     <div class="container">
         <!-- Portfolio Section Heading-->
         {% if profile_user == user %}
-            <h4 class="page-section-heading text-center text-uppercase text-secondary mb-4">My Projects<a class="btn btn-primary mb-2 mx-2" href="{% url 'profile-settings' %}"><i class="fas fa-plus fa-lg" style="margin-top: 2px;"></i></a></h4>
+            <h4 class="page-section-heading text-center text-uppercase text-secondary mb-4">My Projects<a class="btn btn-primary mb-2 mx-2" href="{% url 'create-project' %}"><i class="fas fa-plus fa-lg" style="margin-top: 2px;"></i></a></h4>
         {% else %}
             <h4 class="page-section-heading text-center text-uppercase text-secondary mb-4">Projects</h4>
         {% endif %}
         <hr>
         <div class="row justify-content-center">
             {% for project in object_list %}
-            <div class="col-md-6 col-lg-3 mb-5 mb-md-0">
+            <div class="col-md-6 col-lg-3 mb-5 mb-md-4">
                 <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal{{ project.pk }}">
                     <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                         <div class="portfolio-item-caption-content text-center text-white"><i
@@ -164,7 +164,7 @@
                                 </div>
                                 <div class="col">
                                     {% if project.users.all|length == 1 %}
-                                    <p><span class="text-uppercase font-weight-bold">Current team:</span> <a href="{% url 'profile' username=project.project_owner  %}">{{ project.project_owner }}</a></p>
+                                    <p><span class="text-uppercase font-weight-bold">Current team (1/{{ project.max_members }})</span>: <a href="{% url 'profile' username=project.project_owner  %}">{{ project.project_owner }}</a></p>
                                     {% else %}
                                     <p><span class="text-uppercase font-weight-bold">Current team ({{ project.users.all|length }}/{{ project.max_members }})</span>:
                                         {% for t_user in project.users.all %}
@@ -198,7 +198,7 @@
         <div class="container text-uppercase text-center">
             <!-- Portfolio Section Heading-->
             {% if profile_user == user %}
-                <h4 class="page-section-heading text-center text-uppercase text-secondary mb-4">My Projects<a class="btn btn-primary mb-2 mx-2" href="{% url 'profile-settings' %}"><i class="fas fa-plus fa-lg" style="margin-top: 2px;"></i></a></h4>
+                <h4 class="page-section-heading text-center text-uppercase text-secondary mb-4">My Projects<a class="btn btn-primary mb-2 mx-2" href="{% url 'create-project' %}"><i class="fas fa-plus fa-lg" style="margin-top: 2px;"></i></a></h4>
             {% else %}
                 <h4 class="page-section-heading text-center text-secondary mb-4">Projects</h4>
             {% endif %}

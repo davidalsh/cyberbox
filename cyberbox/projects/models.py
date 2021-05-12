@@ -23,3 +23,5 @@ class Projects(models.Model):
         verbose_name = "Project"
         verbose_name_plural = "Projects"
         ordering = ['-created_at']
+
+

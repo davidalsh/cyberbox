@@ -68,8 +68,14 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
                             <!-- Portfolio Modal - Title-->
-                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-2"
-                                id="portfolioModal{{ project.pk }}Label"><span style="color: #B9B9B9;">#{{ project.pk }}</span> {{ project.title }}</h2>
+                            {% if project.project_owner == user %}
+                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-2"
+                                    id="portfolioModal{{ project.pk }}Label"><span style="color: #B9B9B9;">#{{ project.pk }}</span> {{ project.title }} <a class="btn btn-primary mb-2" href="{% url 'project-edit' project_id=project.id %}"><i class="fas fa-pen-square fa-lg" style="margin-top: 2px;"></i></a></h2>
+                            {% else %}
+                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-2"
+                                    id="portfolioModal{{ project.pk }}Label"><span style="color: #B9B9B9;">#{{ project.pk }}</span> {{ project.title }} </h2>
+                            {% endif %}
+
                             {% if project.open %}
                                 <strong class="text-uppercase" style="color: #00D500;">Open</strong>
                             {% else %}

@@ -1,20 +1,20 @@
 {% extends 'base_auth.html' %}
 {% load static %}
 
-{% block title %}Delete Profile{% endblock %}
+{% block title %}Delete Project {{ project.title }}{% endblock %}
 
 {% block content %}
 <div class="container">
-    <h3 style="font-size: 2em;" class="page-section-heading text-center text-uppercase text-secondary mt-5 mb-0">Delete account confirmation</h3>
+    <h3 style="font-size: 2em;" class="page-section-heading text-center text-uppercase text-secondary mt-5 mb-0">Delete project <span style="color: #B9B9B9;">#{{ project.pk }}</span> {{ project.title }}</h3>
     <form method="post" action="">
         {% csrf_token %}
         <div class="control-group mt-4 mb-3">
             <div class="form-group floating-label-form-group controls mb-0 pb-2">
 
 
-                <input class="form-control" id="username" type="text" name="username"
-                       placeholder="Verify your username" required="required"
-                       data-validation-required-message="Please enter your name."/>
+                <input class="form-control" id="project_id" type="text" name="project_id"
+                       placeholder="Verify project ID" required="required"
+                       data-validation-required-message="Verify project id"/>
 
             </div>
         </div>

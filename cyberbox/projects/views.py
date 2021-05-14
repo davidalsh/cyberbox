@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.views.generic.list import ListView
 
-from main.models import ProgrammingLanguages
+from django.contrib import messages
 from projects.models import Projects
 from projects.forms import CreateProjectForm
 
@@ -61,19 +61,11 @@ class ProjectEditView(LoginRequiredMixin, View):
         if project.project_owner != request.user:
             return HttpResponseForbidden()
 
-        init_data = {
-            'title': project.title,
-            'description': project.description,
-            'programming_languages_are_using': project.programming_languages_are_using.all(),
-            'searching_for_working_place': project.searching_for_working_place.all(),
-            'open': project.open,
-            'max_members': project.max_members,
-        }
-
-        form = CreateProjectForm(initial=init_data)
+        form = CreateProjectForm(instance=project)
 
         context = {
             'form': form,
+            'projectid': project_id,
         }
 
         return render(request, 'projects/edit-project.html', context)
@@ -84,16 +76,7 @@ class ProjectEditView(LoginRequiredMixin, View):
         if project.project_owner != request.user:
             return HttpResponseForbidden()
 
-        init_data = {
-            'title': project.title,
-            'description': project.description,
-            'programming_languages_are_using': project.programming_languages_are_using.all(),
-            'searching_for_working_place': project.searching_for_working_place.all(),
-            'open': project.open,
-            'max_members': project.max_members,
-        }
-
-        form = CreateProjectForm(request.POST, initial=init_data)
+        form = CreateProjectForm(request.POST, instance=project)
 
         if form.is_valid():
             project.title = request.POST.get('title')
@@ -109,6 +92,43 @@ class ProjectEditView(LoginRequiredMixin, View):
 
         context = {
             'form': form,
+            'projectid': project_id,
         }
 
         return render(request, 'projects/edit-project.html', context)
+
+
+class DeleteProjectView(LoginRequiredMixin, View):
+    login_url = '/sign-in/'
+    redirect_field_name = 'sign-in'
+
+    def get(self, request, project_id):
+        project = get_object_or_404(Projects, pk=project_id)
+
+        if project.project_owner != request.user:
+            return HttpResponseForbidden()
+
+        context = {
+            'project': project,
+        }
+        return render(request, 'projects/delete-project.html', context)
+
+    def post(self, request, project_id):
+        project = get_object_or_404(Projects, id=project_id)
+
+        if project.project_owner != request.user:
+            return HttpResponseForbidden()
+
+        if int(request.POST.get('project_id')) == project_id:
+            project.delete()
+            return redirect('profile', username=request.user.username)
+
+        messages.info(request, 'Project ID is incorrect.')
+
+        context = {
+            'project': project,
+        }
+
+        return render(request, 'projects/delete-project.html', context)
+
+

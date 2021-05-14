@@ -90,6 +90,9 @@
                         <button class="btn btn-primary btn-xl" style="font-size: 1.2em;"
                                 type="submit">Edit Project
                         </button>
+                        <a class="btn btn-danger btn-xl mx-2" href="{% url 'delete-project' project_id=projectid %}"
+                                type="submit"><i class="fas fa-trash fa-lg"></i>
+                        </a>
                     </div>
 
                 </form>

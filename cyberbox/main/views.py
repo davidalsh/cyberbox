@@ -98,7 +98,23 @@ class ProfilePageSettingsView(LoginRequiredMixin, View):  # Settings View
     redirect_field_name = 'sign-in'
 
     def get(self, request):
-        form = UserProfileForm()
+        try:
+            user = UserProfile.objects.get(user_id=request.user.pk)
+        except ObjectDoesNotExist:
+            user = None
+
+        if user:
+            init_data = {
+                'working_place': user.working_place,
+                'about': user.about,
+                'programming_languages': user.programming_languages.all(),
+                'github': user.github,
+                'linkedin': user.linkedin,
+            }
+        else:
+            init_data = {}
+
+        form = UserProfileForm(initial=init_data)
 
         context = {
             'form': form,

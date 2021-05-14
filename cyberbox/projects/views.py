@@ -1,3 +1,5 @@
+from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
 from django.http import Http404, HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -131,4 +133,32 @@ class DeleteProjectView(LoginRequiredMixin, View):
 
         return render(request, 'projects/delete-project.html', context)
 
+
+class SearchResultView(LoginRequiredMixin, ListView):
+    login_url = '/sign-in/'
+    redirect_field_name = 'sign-in'
+
+    model = Projects
+    paginate_by = 16
+    template_name = 'projects/projects.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+
+        if not query:
+            return Projects.objects.filter(open=True)
+
+        if query[0] == '#':
+
+            project_id = query.replace('#', '')
+
+            if not project_id.isdigit():
+                return Projects.objects.filter(title__icontains=query)
+
+            object_list = Projects.objects.filter(id=project_id)
+
+        else:
+            object_list = Projects.objects.filter(title__icontains=query)
+
+        return object_list
 

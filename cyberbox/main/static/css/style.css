@@ -10241,95 +10241,103 @@ form .row:first-child .floating-label-form-group {
 }
 
 
-.language-python {
+.language-python:hover {
   color: #376AA4;
+  background: #fff;
   border-color: #376AA4;
 }
 
-.language-python:hover {
+.language-python {
   color: #fff;
   border-color: #376AA4;
   background: #376AA4;
 }
 
 
-.language-javascript {
+.language-javascript:hover {
   color: #E6C418;
+  background: #fff;
   border-color: #E6C418;
 }
 
-.language-javascript:hover {
+.language-javascript {
   color: #fff;
   border-color: #E6C418;
   background: #E6C418;
 }
 
 
-.language-java {
+.language-java:hover {
   color: #BD5444;
+  background: #fff;
   border-color: #BD5444;
 }
 
-.language-java:hover {
+.language-java {
   color: #fff;
   border-color: #BD5444;
   background: #BD5444;
 }
 
 
-.language-html {
+.language-html:hover {
   color: #E97544;
+  background: #fff;
   border-color: #E97544;
 }
 
-.language-html:hover {
+.language-html {
   color: #fff;
   border-color: #E97544;
   background: #E97544;
 }
 
 
-.language-css {
+.language-css:hover {
   color: #2DA5D7;
+  background: #fff;
   border-color: #2DA5D7;
 }
 
-.language-css:hover {
+.language-css {
   color: #fff;
   border-color: #2DA5D7;
   background: #2DA5D7;
 }
 
 
-.language-php {
+.language-php:hover {
   color: #4D588E;
+  background: #fff;
   border-color: #4D588E;
 }
 
-.language-php:hover {
+.language-php {
   color: #fff;
   border-color: #4D588E;
   background: #4D588E;
 }
 
 
-.language-c-sharp {
+.language-c-sharp:hover {
   color: #903BA7;
+  background: #fff;
   border-color: #903BA7;
 }
 
-.language-c-sharp:hover {
+.language-c-sharp {
   color: #fff;
   border-color: #903BA7;
   background: #903BA7;
 }
 
-.language-go {
+.language-go:hover {
   color: #00A7D0;
+  background: #fff;
   border-color: #00A7D0;
 }
 
-.language-go:hover {
+.language-go {
   color: #fff;
   border-color: #00A7D0;
   background: #00A7D0;
@@ -10368,4 +10376,3 @@ input[type='checkbox'] {
 input[type='checkbox']:checked {
     background: #8AE48A;
 }
-

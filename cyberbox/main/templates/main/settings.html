@@ -17,7 +17,7 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label for="{{ form.working_place.id_for_label }}">Working place</label>
-                            {{ form.working_place|add_class:"form-control"}}
+                            <h4 style="color: #6C757D;">Your working place</h4>{{ form.working_place|add_class:"form-control"}}
                             {% if form.working_place.errors %}
                             {% for error in form.working_place.errors %}
                             <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
@@ -28,7 +28,7 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>Choose a file.</label>
-                            {{ form.avatar|add_class:"form-control" }}
+                            <h4 style="color: #6C757D;">Choose an avatar</h4>{{ form.avatar|add_class:"form-control" }}
                             {% if form.avatar.errors %}
                             {% for error in form.avatar.errors %}
                             <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
@@ -39,7 +39,7 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>About</label>
-                            {{ form.about|add_class:"form-control" }}
+                            <h4 style="color: #6C757D;">About</h4>{{ form.about|add_class:"form-control" }}
                             {% if form.about.errors %}
                             {% for error in form.about.errors %}
                             <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
@@ -50,7 +50,7 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>Skills</label>
-                            {{ form.programming_languages|add_class:"form-control" }}
+                            <h4 style="color: #6C757D;">Skills</h4>{{ form.programming_languages|add_class:"form-control" }}
                             {% if form.programming_languages.errors %}
                             {% for error in form.programming_languages.errors %}
                             <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
@@ -62,7 +62,7 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>GitHub</label>
-                            {{ form.github|add_class:"form-control" }}
+                            <h4 style="color: #6C757D;">GitHub</h4>{{ form.github|add_class:"form-control" }}
                             {% if form.github.errors %}
                             {% for error in form.github.errors %}
                             <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
@@ -74,7 +74,7 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>LinkedIn</label>
-                            {{ form.linkedin|add_class:"form-control" }}
+                            <h4 style="color: #6C757D;">LinkedIn</h4>{{ form.linkedin|add_class:"form-control" }}
                             {% if form.linkedin.errors %}
                             {% for error in form.linkedin.errors %}
                             <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
@@ -102,13 +102,5 @@
 {% endblock %}
 
 
-{% block js %}
-<script>
-    var form_fields = document.getElementsByTagName('input')
-    form_fields[2].placeholder='About';
-    form_fields[3].placeholder='GitHub';
-    form_fields[4].placeholder='LinkedIn';
-
-</script>
-{% endblock %}
+{% block js %}{% endblock %}
 

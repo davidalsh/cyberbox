@@ -121,9 +121,12 @@ class DeleteProjectView(LoginRequiredMixin, View):
         if project.project_owner != request.user:
             return HttpResponseForbidden()
 
-        if int(request.POST.get('project_id')) == project_id:
-            project.delete()
-            return redirect('profile', username=request.user.username)
+        try:
+            if int(request.POST.get('project_id')) == project_id:
+                project.delete()
+                return redirect('profile', username=request.user.username)
+        except ValueError:
+            pass
 
         messages.info(request, 'Project ID is incorrect.')
 

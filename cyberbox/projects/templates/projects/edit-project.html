@@ -17,7 +17,7 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>Working place</label>
-                            {{ form.title|add_class:"form-control" }}
+                            <h4 style="color: #6C757D;">Working place</h4>{{ form.title|add_class:"form-control" }}
                             {% if form.title.errors %}
                             {% for error in form.title.errors %}
                             <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
@@ -28,7 +28,7 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>Description</label>
-                            {{ form.description|add_class:"form-control" }}
+                            <h4 style="color: #6C757D;">Description</h4>{{ form.description|add_class:"form-control" }}
                             {% if form.description.errors %}
                             {% for error in form.description.errors %}
                             <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
@@ -39,7 +39,7 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>Skills</label>
-                            <h4 style="color: #6C757D;">Skills are using on project:</h4>
+                            <h4 style="color: #6C757D;">Skills are used on project</h4>
                             {{ form.programming_languages_are_using|add_class:"form-control" }}
                             {% if form.programming_languages_are_using.errors %}
                             {% for error in form.programming_languages_are_using.errors %}
@@ -51,7 +51,7 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>Working Place</label>
-                            <h4 style="color: #6C757D;">Who do you need:</h4>
+                            <h4 style="color: #6C757D;">Who do you need</h4>
                             {{ form.searching_for_working_place|add_class:"form-control" }}
                             {% if form.searching_for_working_place.errors %}
                             {% for error in form.searching_for_working_place.errors %}
@@ -76,7 +76,7 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
                             <label>Members</label>
-                            {{ form.max_members|add_class:"form-control" }}
+                            <h4 style="color: #6C757D;">Members</h4>{{ form.max_members|add_class:"form-control" }}
                             {% if form.max_members.errors %}
                             {% for error in form.max_members.errors %}
                             <strong style="color: #F73F3F;">*{{ error|escape }}</strong>
@@ -105,13 +105,4 @@
 
 
 
-{% block js %}
-    <script>
-        var form_input = document.getElementsByTagName('input');
-        var form_textarea = document.getElementById('id_description');
-        document.getElementById("id_max_members").placeholder = "Members";
-        form_input[1].placeholder='Title';
-        form_textarea.placeholder='Description';
-
-    </script>
-{% endblock %}
+{% block js %}{% endblock %}

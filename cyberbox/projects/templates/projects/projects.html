@@ -13,28 +13,30 @@
         <h2 class="page-section-heading text-center text-uppercase text-secondary mb-4">Projects</h2>
         <!-- Portfolio Grid Items-->
 
-        <div class="d-flex justify-content-end mb-5">
+        <div class="d-flex justify-content mb-5">
             <form action="{% url 'search-results' %}" method="get" class="form-inline">
-                <input class="form-control rounded-left" name="q" style="border-radius: 0;" type="search" placeholder="#ID or Title" aria-label="Search">
-                <button class="btn btn-primary my-2 my-sm-0 rounded-right" style="border-radius: 0;" type="submit"><i class="fas fa-search"></i></button>
+                <input class="form-control rounded mr-1" name="q" style="border-radius: 0;" type="search"
+                       placeholder="#ID or Title" aria-label="Search">
+                <button class="btn btn-primary my-2 my-sm-0 rounded" style="border-radius: 0;" type="submit"><i
+                        class="fas fa-search"></i></button>
             </form>
         </div>
 
         <div class="row justify-content-center">
             {% if not object_list %}
-                <h4>Nothing found</h4>
+            <h4>Nothing found</h4>
             {% else %}
-                {% for project in object_list %}
-                <div class="col-md-6 col-lg-3 mb-5 mb-md-4">
-                    <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal{{ project.pk }}">
-                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fas fa-box-open fa-3x"></i></div>
-                        </div>
-                        <img class="img-fluid" src="{% static 'assets/img/portfolio/safe.png' %}" alt=""/>
+            {% for project in object_list %}
+            <div class="col-md-6 col-lg-3 mb-5 mb-md-4">
+                <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal{{ project.pk }}">
+                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                        <div class="portfolio-item-caption-content text-center text-white"><i
+                                class="fas fa-box-open fa-3x"></i></div>
                     </div>
+                    <img class="img-fluid" src="{% static 'assets/img/portfolio/safe.png' %}" alt=""/>
                 </div>
-                {% endfor %}
+            </div>
+            {% endfor %}
             {% endif %}
         </div>
     </div>
@@ -44,23 +46,25 @@
 <nav aria-label="Page navigation example" class="d-flex justify-content-center">
     <ul class="pagination">
         {% if page_obj.has_previous %}
-            <li class="page-item">
-                <a class="page-link" href="?page=1" aria-label="First">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+        <li class="page-item">
+            <a class="page-link" href="?page=1" aria-label="First">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{
+            page_obj.previous_page_number }}</a></li>
         {% endif %}
 
         <li class="page-item"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
 
         {% if page_obj.has_next %}
-            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
-            <li class="page-item">
-                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{
+            page_obj.next_page_number }}</a></li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
         {% endif %}
     </ul>
 </nav>
@@ -80,17 +84,22 @@
                         <div class="col-lg-8">
                             <!-- Portfolio Modal - Title-->
                             {% if project.project_owner == user %}
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-2"
-                                    id="portfolioModal{{ project.pk }}Label"><span style="color: #B9B9B9;">#{{ project.pk }}</span> {{ project.title }} <a class="btn btn-primary mb-2" href="{% url 'project-edit' project_id=project.id %}"><i class="fas fa-pen-square fa-lg" style="margin-top: 2px;"></i></a></h2>
+                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-2"
+                                id="portfolioModal{{ project.pk }}Label"><span
+                                    style="color: #B9B9B9;">#{{ project.pk }}</span> {{ project.title }} <a
+                                    class="btn btn-primary mb-2"
+                                    href="{% url 'project-edit' project_id=project.id %}"><i
+                                    class="fas fa-pen-square fa-lg" style="margin-top: 2px;"></i></a></h2>
                             {% else %}
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-2"
-                                    id="portfolioModal{{ project.pk }}Label"><span style="color: #B9B9B9;">#{{ project.pk }}</span> {{ project.title }} </h2>
+                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-2"
+                                id="portfolioModal{{ project.pk }}Label"><span
+                                    style="color: #B9B9B9;">#{{ project.pk }}</span> {{ project.title }} </h2>
                             {% endif %}
 
                             {% if project.open %}
-                                <strong class="text-uppercase" style="color: #00D500;">Open</strong>
+                            <strong class="text-uppercase" style="color: #00D500;">Open</strong>
                             {% else %}
-                                <strong class="text-uppercase" style="color: #D10A0A;">Closed</strong>
+                            <strong class="text-uppercase" style="color: #D10A0A;">Closed</strong>
                             {% endif %}
 
                             <hr class="mb-3">
@@ -133,19 +142,21 @@
 
                             <div class="row">
                                 <div class="col">
-                                    <strong class="mb-1 text-uppercase">Owner: <a href="{% url 'profile' username=project.project_owner %}">{{ project.project_owner }}</a></strong>
+                                    <strong class="mb-1 text-uppercase">Owner: <a
+                                            href="{% url 'profile' username=project.project_owner %}">{{ project.project_owner }}</a></strong>
                                 </div>
                                 <div class="col">
                                     {% if project.users.all|length == 1 %}
-                                    <p><span class="text-uppercase font-weight-bold">Current team(1/{{ project.max_members }})</span>: <a href="{% url 'profile' username=project.project_owner  %}">{{ project.project_owner }}</a></p>
+                                    <p><span class="text-uppercase font-weight-bold">Current team(1/{{ project.max_members }})</span>:
+                                        <a href="{% url 'profile' username=project.project_owner  %}">{{ project.project_owner }}</a></p>
                                     {% else %}
                                     <p><span class="text-uppercase font-weight-bold">Current team ({{ project.users.all|length }}/{{ project.max_members }})</span>:
                                         {% for t_user in project.users.all %}
-                                        {% if t_user == project.users.all.last %}
-                                        <a href="{% url 'profile' username=t_user  %}">{{ t_user }}</a>
-                                        {% else %}
-                                        <a href="{% url 'profile' username=t_user  %}">{{ t_user }}</a>,
-                                        {% endif %}
+                                            {% if t_user == project.users.all.last %}
+                                                <a href="{% url 'profile' username=t_user  %}">{{ t_user }}</a>
+                                            {% else %}
+                                                <a href="{% url 'profile' username=t_user  %}">{{ t_user }}</a>,
+                                            {% endif %}
                                         {% endfor %}</p>
                                     {% endif %}
                                 </div>

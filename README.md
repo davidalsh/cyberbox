@@ -1,1 +1,1 @@
-![Screenshot](./cyberbox/templates/preview1.png)
+![Screenshot](./cyberbox/projects/templates/preview.png)

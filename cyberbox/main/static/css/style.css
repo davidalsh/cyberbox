@@ -10241,11 +10241,6 @@ form .row:first-child .floating-label-form-group {
 }
 
 
-.language-python:hover {
-  color: #376AA4;
-  background: #fff;
-  border-color: #376AA4;
-}
 
 .language-python {
   color: #fff;
@@ -10254,11 +10249,6 @@ form .row:first-child .floating-label-form-group {
 }
 
 
-.language-javascript:hover {
-  color: #E6C418;
-  background: #fff;
-  border-color: #E6C418;
-}
 
 .language-javascript {
   color: #fff;
@@ -10267,11 +10257,6 @@ form .row:first-child .floating-label-form-group {
 }
 
 
-.language-java:hover {
-  color: #BD5444;
-  background: #fff;
-  border-color: #BD5444;
-}
 
 .language-java {
   color: #fff;
@@ -10280,12 +10265,6 @@ form .row:first-child .floating-label-form-group {
 }
 
 
-.language-html:hover {
-  color: #E97544;
-  background: #fff;
-  border-color: #E97544;
-}
-
 .language-html {
   color: #fff;
   border-color: #E97544;
@@ -10293,11 +10272,6 @@ form .row:first-child .floating-label-form-group {
 }
 
 
-.language-css:hover {
-  color: #2DA5D7;
-  background: #fff;
-  border-color: #2DA5D7;
-}
 
 .language-css {
   color: #fff;
@@ -10306,12 +10280,6 @@ form .row:first-child .floating-label-form-group {
 }
 
 
-.language-php:hover {
-  color: #4D588E;
-  background: #fff;
-  border-color: #4D588E;
-}
-
 .language-php {
   color: #fff;
   border-color: #4D588E;
@@ -10319,11 +10287,6 @@ form .row:first-child .floating-label-form-group {
 }
 
 
-.language-c-sharp:hover {
-  color: #903BA7;
-  background: #fff;
-  border-color: #903BA7;
-}
 
 .language-c-sharp {
   color: #fff;
@@ -10331,11 +10294,6 @@ form .row:first-child .floating-label-form-group {
   background: #903BA7;
 }
 
-.language-go:hover {
-  color: #00A7D0;
-  background: #fff;
-  border-color: #00A7D0;
-}
 
 .language-go {
   color: #fff;

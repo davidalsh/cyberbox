@@ -164,10 +164,19 @@
                             <p class="text-uppercase font-weight-bold">Created: {{ project.created_at|date:"SHORT_DATE_FORMAT" }} {{ project.created_at|time:"H:i" }}</p>
 
 
-                            <button class="btn btn-primary mt-2" data-dismiss="modal">
-                                <i class="fas fa-times fa-fw"></i>
-                                Close
-                            </button>
+                            <div class="row justify-content-center">
+                                {% if user not in project.users.all %}
+                                    <a class="btn btn-success mt-2 col"
+                                        href="{% url 'project-edit' project_id=project.id %}">APPLY</a>
+                                {% endif %}
+
+                                <button class="btn btn-danger col mt-2" data-dismiss="modal">
+                                    <i class="fas fa-times fa-fw"></i>
+                                    Close
+                                </button>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>

@@ -137,6 +137,22 @@ class DeleteProjectView(LoginRequiredMixin, View):
         return render(request, 'projects/delete-project.html', context)
 
 
+class ProjectApplyView(LoginRequiredMixin, View):
+    login_url = '/sign-in/'
+    redirect_field_name = 'sign-in'
+
+    def get(self, request, project_id):
+
+        project = get_object_or_404(Projects, id=project_id)
+
+        if project.open:
+            pass
+        else:
+            return HttpResponseForbidden()
+
+        return redirect('projects')
+
+
 class SearchResultView(LoginRequiredMixin, ListView):
     login_url = '/sign-in/'
     redirect_field_name = 'sign-in'

@@ -1,4 +1,4 @@
-![Screenshot](./cyberbox/projects/templates/preview.png)
+![Screenshot](./cyberbox/templates/preview3.png)
 
 Example of Project:
 

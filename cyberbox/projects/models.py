@@ -25,3 +25,10 @@ class Projects(models.Model):
         ordering = ['-created_at']
 
 
+class ApplyToProjectRequest(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='applying_user')
+    project = models.ForeignKey(Projects, on_delete=models.CASCADE, related_name='applying_to_project')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user} to {self.project}'

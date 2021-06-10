@@ -22,4 +22,4 @@ class UserProfileAdmin(admin.ModelAdmin):
     list_display = ("user",)
     list_display_links = ("user",)
     list_filter = ("programming_languages", "working_place",)
-    search_fields = ("title", "about", )
+    search_fields = ("title", "about",)

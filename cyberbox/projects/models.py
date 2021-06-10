@@ -26,8 +26,8 @@ class Projects(models.Model):
 
 
 class ApplyToProjectRequest(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='applying_user')
-    project = models.ForeignKey(Projects, on_delete=models.CASCADE, related_name='applying_to_project')
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    project = models.OneToOneField(Projects, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

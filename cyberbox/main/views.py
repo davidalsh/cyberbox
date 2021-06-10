@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, Http404
 from django.views import View
 from django.core.exceptions import ObjectDoesNotExist
+from django.views.generic import ListView
 
 from main.forms import CreateUserForm, UserProfileForm
 
@@ -11,7 +12,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from main.models import UserProfile
-from projects.models import Projects
+from projects.models import Projects, ApplyToProjectRequest
 
 
 class SignUpView(View):
@@ -135,6 +136,19 @@ class ProfilePageSettingsView(LoginRequiredMixin, View):  # Settings View
             'form': form,
         }
         return render(request, 'main/settings.html', context)
+
+
+class NotificationsView(LoginRequiredMixin, ListView):
+    login_url = '/sign-in/'
+    redirect_field_name = 'sign-in'
+
+    model = Projects
+    template_name = 'main/notifications.html'
+
+    def get_queryset(self):
+        queryset = ApplyToProjectRequest.objects.filter(project__owner_p=self.request.user)
+        print(queryset)
+        return queryset
 
 
 class ProfileSettingsDeletePageView(LoginRequiredMixin, View):  # Delete View

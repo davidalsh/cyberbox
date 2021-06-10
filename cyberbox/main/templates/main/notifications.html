@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Notifications{% endblock %}
+
+
+{% block content %}
+
+    {% for request in object_list %}
+        <div class="card">
+            <div class="card-header">
+                Request to project
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ request.project.title }}</h5>
+                <p class="card-text"><a href="{% url 'profile' username=request.user %}">{{ request.user }}</a> wants to be in your project team.</p>
+                <a href="#" class="btn btn-success"><i class="fas fa-check"></i></a>
+                <a href="#" class="btn btn-danger"><i class="fas fa-times"></i></a>
+                <div class="card-footer text-muted">
+                    {{ request.created_at|date:"SHORT_DATE_FORMAT" }}
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="container d-flex justify-content-center">
+            <div class="card text-center mt-5 mb-5 pr-5 pl-5 pt-3 pb-3">
+                <div class="card-body">
+                    <h3 class="card-title">IT'S CLEAR</h3>
+                    <a href="{% url 'profile' username=user.username %}" class="btn btn-primary">GO TO PROFILE</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}
+

@@ -180,4 +180,3 @@ class SearchResultView(LoginRequiredMixin, ListView):
             object_list = Projects.objects.filter(title__icontains=query)
 
         return object_list
-

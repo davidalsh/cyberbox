@@ -43,7 +43,6 @@ share/python-wheels/
 *.egg
 MANIFEST
 
-/cyberbox/cyberbox/settings.py
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
